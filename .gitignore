@@ -1,0 +1,34 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+/out/
+/production/
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.log
+*.bak
+*.swp
+*~
+.#*
+# *.pid
+# *.seed
+# *.log
+
+# Maven
+/target/
+
+# Gradle
+.gradle/
+/build/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
