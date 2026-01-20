@@ -1,2 +1,0 @@
-user = arroz
-senha = 12345senhasecreta
