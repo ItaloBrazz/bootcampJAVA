@@ -193,7 +193,7 @@ public class Main {
         }
     }
 
-    // ===================== UTILITÁRIOS =====================
+    // Cabeçário para Pular Linhas
 
     static void cabecalho(String titulo) {
         System.out.println("\n===============================");
