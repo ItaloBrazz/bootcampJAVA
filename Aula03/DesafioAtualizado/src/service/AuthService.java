@@ -8,11 +8,19 @@ public class AuthService {
 
     private ArrayList<Admin> admins = new ArrayList<>();
 
-    private final String BASE_DIR = System.getProperty("user.dir");
-    private final String PASTA = BASE_DIR + "/data";
-    private final String ARQUIVO = PASTA + "/admins.txt";
+    private final String PASTA;
+    private final String ARQUIVO;
 
     public AuthService() {
+        this.PASTA = System.getProperty("user.dir") + "/data";
+        this.ARQUIVO = this.PASTA + "/admins.txt";
+        criarArquivoSeNaoExistir();
+        carregarAdmins();
+    }
+
+    public AuthService(String pasta, String arquivo) {
+        this.PASTA = pasta;
+        this.ARQUIVO = arquivo;
         criarArquivoSeNaoExistir();
         carregarAdmins();
     }

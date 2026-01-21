@@ -1,7 +1,7 @@
 # 📚 Desafio CRUD – Biblioteca em Java
 
 Bem-vindo ao **Desafio-CRUD**!
-Este projeto é uma aplicação simples e didática em **Java** para gerenciamento de livros, utilizando as operações básicas de um CRUD: **Create, Read, Update e Delete**.
+Este projeto é uma aplicação em **Java** para gerenciamento de livros, agora com autenticação de administrador e persistência de dados em arquivos.
 
 ---
 
@@ -9,10 +9,12 @@ Este projeto é uma aplicação simples e didática em **Java** para gerenciamen
 
 Com este sistema você pode:
 
-* ➕ **Adicionar** livros informando título, autor, ano e disponibilidade
-* 📋 **Listar** todos os livros cadastrados
-* ✏️ **Atualizar** dados de um livro existente
-* 🗑️ **Remover** livros da biblioteca
+*   🔐 **Autenticação** de administrador para acesso ao sistema.
+*   👤 **Cadastro** de novos administradores.
+*   ➕ **Adicionar** livros informando título, autor, ano e disponibilidade.
+*   📋 **Listar** todos os livros cadastrados.
+*   ✏️ **Atualizar** dados de um livro existente.
+*   🗑️ **Remover** livros da biblioteca.
 
 Tudo isso através de um menu interativo no terminal.
 
@@ -20,35 +22,40 @@ Tudo isso através de um menu interativo no terminal.
 
 ## 🛠️ Tecnologias Utilizadas
 
-* ☕ Java
-* 🧩 Programação Orientada a Objetos
-* 💻 Execução via terminal/console
+*   ☕ Java
+*   🧩 Programação Orientada a Objetos
+*   💾 Persistência de dados em arquivos de texto.
+*   💻 Execução via terminal/console.
 
 ---
 
 ## ▶️ Como Executar
 
-1. Compile o arquivo principal:
+1.  Compile os arquivos fontes a partir da pasta `src`:
 
-   ```bash
-   javac Main.java
-   ```
+    ```bash
+    javac -d ../out/production/Desafio ./src/Main.java ./src/model/Admin.java ./src/model/Livro.java ./src/service/AuthService.java ./src/service/BibliotecaService.java
+    ```
 
-2. Execute o programa:
+2.  Execute o programa a partir da pasta `src`:
 
-   ```bash
-   java Main
-   ```
+    ```bash
+    java -cp ../out/production/Desafio Main
+    ```
 
-3. Navegue pelo menu e gerencie seus livros 📖
+3.  Navegue pelo menu e gerencie seus livros 📖
 
 ---
 
 ## 📂 Estrutura do Projeto
 
-* `Main.java` → Classe principal com o menu e lógica do CRUD
-* Classe `Livro` → Representação dos dados do livro
-* Lista em memória → Armazenamento temporário dos registros
+*   `src/Main.java` → Classe principal com o menu e a interação com o usuário.
+*   `src/model/Livro.java` → Classe que representa os dados do livro.
+*   `src/model/Admin.java` → Classe que representa os dados do administrador.
+*   `src/service/BibliotecaService.java` → Classe que gerencia as operações de CRUD dos livros.
+*   `src/service/AuthService.java` → Classe que gerencia a autenticação dos administradores.
+*   `data/livros.txt` → Arquivo que armazena os dados dos livros.
+*   `data/admins.txt` → Arquivo que armazena os dados dos administradores.
 
 ---
 
@@ -56,10 +63,10 @@ Tudo isso através de um menu interativo no terminal.
 
 Projeto criado para praticar:
 
-* Lógica de programação
-* Manipulação de listas
-* Estruturação de projetos Java
-* Boas práticas de código
+*   Lógica de programação
+*   Manipulação de listas e arquivos.
+*   Estruturação de projetos Java com pacotes.
+*   Boas práticas de código.
 
 ---
 
