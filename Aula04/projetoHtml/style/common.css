@@ -1,0 +1,68 @@
+/* Variáveis CSS - Tema Preto e Verde */
+:root {
+    --primary-green: #86BC25;
+    --dark-green: #6a951d;
+    --black: #000000;
+    --dark-black: #0a0a0a;
+    --light-bg: #0f0f0f;
+}
+
+/* Estilos Globais */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(180deg, var(--dark-black) 0%, #1a1a1a 100%);
+    min-height: 100vh;
+    color: #e0e0e0;
+}
+
+/* Navbar - Estilos Compartilhados */
+.navbar {
+    background: linear-gradient(135deg, var(--black) 0%, var(--dark-black) 100%);
+    box-shadow: 0 4px 20px rgba(134, 188, 37, 0.3);
+    border-bottom: 2px solid rgba(134, 188, 37, 0.5);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: white !important;
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.deloitte-logo {
+    height: 40px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s;
+}
+
+.deloitte-logo:hover {
+    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(134, 188, 37, 0.8));
+}
+
+.navbar-nav .nav-link {
+    color: rgba(255,255,255,0.9) !important;
+    font-weight: 500;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: white !important;
+}
+
+.user-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    margin-right: 8px;
+}
+
