@@ -1,0 +1,20 @@
+{
+  "name": "produtos-api-frontend",
+  "version": "1.0.0",
+  "description": "Frontend para API de Produtos - Spring Boot",
+  "scripts": {
+    "start": "http-server -p 8000 -o",
+    "dev": "http-server -p 8000 -o"
+  },
+  "keywords": [
+    "frontend",
+    "api",
+    "produtos"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
+
