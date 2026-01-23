@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/produtos")
+@CrossOrigin(origins = "*") // Permite requisições do frontend
 public class ProdutoController {
 
     @Autowired
