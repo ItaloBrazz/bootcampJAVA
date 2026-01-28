@@ -79,6 +79,40 @@ body {
     margin-bottom: 0.5rem;
 }
 
+.search-card .input-group-text {
+    background-color: #2a2a2a;
+    border: 1px solid rgba(134, 188, 37, 0.3);
+    color: var(--primary-green);
+}
+
+.search-card .form-control {
+    background-color: #2a2a2a;
+    border: 1px solid rgba(134, 188, 37, 0.3);
+    color: var(--text-light);
+}
+
+.search-card .form-control:focus {
+    background-color: #2a2a2a;
+    border-color: var(--primary-green);
+    color: var(--text-light);
+    box-shadow: 0 0 0 0.2rem rgba(134, 188, 37, 0.25);
+}
+
+.search-card .btn-primary {
+    border: 1px solid rgba(134, 188, 37, 0.25);
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+}
+
+.search-card .btn-primary:hover {
+    background: linear-gradient(135deg, var(--dark-green) 0%, var(--primary-green) 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(134, 188, 37, 0.35);
+}
+
+.search-card .btn-secondary {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
 .form-control {
     background-color: #2a2a2a;
     border: 1px solid rgba(134, 188, 37, 0.3);
@@ -315,7 +349,5 @@ footer {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--dark-green);
 }
-
-
 
 
