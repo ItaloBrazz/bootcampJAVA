@@ -10,10 +10,17 @@ public class SwaggerConfig {
 
     @Bean
     public OpenAPI customOpenAPI() {
-        return new OpenAPI()
-                .info(new Info()
-                        .title("API de Gerenciamento de Produtos")
-                        .version("1.0.0")
-                        .description("API REST para gerenciamento de produtos desenvolvida com Spring Boot"));
+        try {
+            Info info = new Info();
+            info.setTitle("API de Gerenciamento de Produtos");
+            info.setVersion("1.0.0");
+            info.setDescription("API REST para gerenciamento de produtos desenvolvida com Spring Boot");
+            
+            OpenAPI openAPI = new OpenAPI();
+            openAPI.setInfo(info);
+            return openAPI;
+        } catch (Exception e) {
+            return new OpenAPI();
+        }
     }
 }
