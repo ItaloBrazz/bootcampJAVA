@@ -5,7 +5,7 @@ import com.exemplo.produtosapi.exception.BusinessRuleException;
 import org.springframework.stereotype.Component;
 
 @Component
-public class QuantidadeNaoNegativaRule implements ProdutoRule {
+public class PrecoPositivoRule implements ProdutoRule {
 
     @Override
     public void validarParaSalvar(ProdutoRequestDTO dto) {
@@ -18,17 +18,13 @@ public class QuantidadeNaoNegativaRule implements ProdutoRule {
     }
 
     private void validar(ProdutoRequestDTO dto) {
-        if (dto == null || dto.getQuantidade() == null) {
-            throw new BusinessRuleException("Quantidade do produto é obrigatória.");
+        if (dto == null || dto.getPreco() == null) {
+            throw new BusinessRuleException("Preço do produto é obrigatório.");
         }
-        if (dto.getQuantidade() < 0) {
-            throw new BusinessRuleException("Quantidade do produto não pode ser negativa.");
+        if (dto.getPreco() < 0) {
+            throw new BusinessRuleException("Preço do produto não pode ser negativo.");
         }
     }
 }
-
-
-
-
 
 
