@@ -8,19 +8,14 @@ import com.exemplo.produtosapi.model.Produto;
 import com.exemplo.produtosapi.repository.ProdutoRepository;
 import com.exemplo.produtosapi.service.ProdutoService;
 import com.exemplo.produtosapi.service.rules.ProdutoRule;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-@Primary
-@Service
-public class ProdutoServiceV2Impl implements ProdutoService {
+public class ProdutoServiceImpl implements ProdutoService {
 
     private final ProdutoRepository produtoRepository;
     private final List<ProdutoRule> rules;
 
-    public ProdutoServiceV2Impl(ProdutoRepository produtoRepository, List<ProdutoRule> rules) {
+    public ProdutoServiceImpl(ProdutoRepository produtoRepository, List<ProdutoRule> rules) {
         this.produtoRepository = produtoRepository;
         this.rules = rules;
     }
@@ -28,26 +23,34 @@ public class ProdutoServiceV2Impl implements ProdutoService {
     @Override
     public ProdutoResponseDTO salvar(ProdutoRequestDTO dto) {
         rules.forEach(r -> r.validarParaSalvar(dto));
-        Produto salvo = produtoRepository.save(ProdutoMapper.toEntity(dto));
+        Produto produto = ProdutoMapper.toEntity(dto);
+        Produto salvo = produtoRepository.save(produto);
         return ProdutoMapper.toResponse(salvo);
     }
 
     @Override
     public List<ProdutoResponseDTO> listar() {
-        return produtoRepository.findAll().stream().map(ProdutoMapper::toResponse).toList();
+        return produtoRepository.findAll()
+                .stream()
+                .map(ProdutoMapper::toResponse)
+                .toList();
     }
 
     @Override
     public ProdutoResponseDTO buscarPorId(Long id) {
-        Produto produto = produtoRepository.findById(id).orElseThrow(() -> new ProdutoNotFoundException(id));
+        Produto produto = produtoRepository.findById(id)
+                .orElseThrow(() -> new ProdutoNotFoundException(id));
         return ProdutoMapper.toResponse(produto);
     }
 
     @Override
     public ProdutoResponseDTO atualizar(Long id, ProdutoRequestDTO dto) {
         rules.forEach(r -> r.validarParaAtualizar(id, dto));
-        Produto produto = produtoRepository.findById(id).orElseThrow(() -> new ProdutoNotFoundException(id));
+        Produto produto = produtoRepository.findById(id)
+                .orElseThrow(() -> new ProdutoNotFoundException(id));
+
         ProdutoMapper.updateEntity(produto, dto);
+
         Produto salvo = produtoRepository.save(produto);
         return ProdutoMapper.toResponse(salvo);
     }
@@ -62,12 +65,10 @@ public class ProdutoServiceV2Impl implements ProdutoService {
 
     @Override
     public List<ProdutoResponseDTO> buscarPorNome(String nome) {
-        return produtoRepository.findByNomeContainingIgnoreCase(nome).stream().map(ProdutoMapper::toResponse).toList();
+        return produtoRepository.findByNomeContainingIgnoreCase(nome)
+                .stream()
+                .map(ProdutoMapper::toResponse)
+                .toList();
     }
 }
-
-
-
-
-
 

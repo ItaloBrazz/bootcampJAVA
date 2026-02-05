@@ -33,3 +33,5 @@
 # Windows
 Thumbs.db
 node_modules/
+
+TUTORIAL_DEPLOY_FRONTEND.md

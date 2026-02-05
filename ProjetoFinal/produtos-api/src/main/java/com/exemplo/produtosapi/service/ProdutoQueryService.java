@@ -14,7 +14,3 @@ public interface ProdutoQueryService {
 }
 
 
-
-
-
-
