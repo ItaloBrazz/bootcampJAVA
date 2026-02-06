@@ -190,6 +190,33 @@ body {
     transform: translateY(-2px);
 }
 
+/* Botões de Busca */
+.btn-search {
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+    color: white;
+    border: none;
+}
+
+.btn-search:hover {
+    background: linear-gradient(135deg, var(--dark-green) 0%, var(--primary-green) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(134, 188, 37, 0.4);
+    color: white;
+}
+
+.btn-clear {
+    background: linear-gradient(135deg, #495057 0%, #343a40 100%);
+    color: white;
+    border: none;
+}
+
+.btn-clear:hover {
+    background: linear-gradient(135deg, #343a40 0%, #495057 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
 /* Lista de Produtos */
 .produto-item {
     background: linear-gradient(135deg, rgba(134, 188, 37, 0.05) 0%, rgba(134, 188, 37, 0.02) 100%);
@@ -615,4 +642,24 @@ body.light-mode .produto-info p {
 body.light-mode footer {
     background: #ffffff;
     border-top-color: rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .btn-search {
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    color: white;
+}
+
+body.light-mode .btn-search:hover {
+    background: linear-gradient(135deg, #0a58ca 0%, #0d6efd 100%);
+    box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+}
+
+body.light-mode .btn-clear {
+    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+    color: white;
+}
+
+body.light-mode .btn-clear:hover {
+    background: linear-gradient(135deg, #5a6268 0%, #6c757d 100%);
+    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
 }
