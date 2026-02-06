@@ -41,6 +41,8 @@ jobs:
       working-directory: ${{ env.PROJECT_PATH }}
       run: |
         ls -lh target/*.jar
+        echo "Verificando se o JAR contém Logback..."
+        jar -tf target/produtos-api-0.0.1-SNAPSHOT.jar | grep -i logback | head -5 || echo "Logback não encontrado no JAR!"
         echo "Usando JAR: target/produtos-api-0.0.1-SNAPSHOT.jar"
 
     - name: Login no Azure
