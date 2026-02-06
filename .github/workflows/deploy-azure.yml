@@ -1,0 +1,61 @@
+name: Deploy Spring Boot to Azure
+
+on:
+  push:
+    branches:
+      - main        # Altere para 'master' se sua branch principal for 'master'
+    paths:
+      - 'ProjetoFinal/produtos-api/**'  # Executa apenas quando há mudanças no projeto
+  workflow_dispatch:  # Permite execução manual
+
+env:
+  JAVA_VERSION: '17'
+  AZURE_WEBAPP_NAME: ${{ secrets.AZURE_WEBAPP_NAME }}
+  AZURE_RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
+  PROJECT_PATH: 'ProjetoFinal/produtos-api'  # Caminho do projeto
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v4
+
+    - name: Configurar Java JDK ${{ env.JAVA_VERSION }}
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ env.JAVA_VERSION }}
+        distribution: 'temurin'
+        cache: 'maven'
+        cache-dependency-path: ${{ env.PROJECT_PATH }}/pom.xml
+
+    - name: Build com Maven
+      working-directory: ${{ env.PROJECT_PATH }}
+      run: |
+        mvn clean package -DskipTests
+
+    - name: Verificar JAR gerado
+      working-directory: ${{ env.PROJECT_PATH }}
+      run: |
+        ls -lh target/*.jar
+
+    - name: Login no Azure
+      uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    - name: Deploy para Azure App Service
+      uses: azure/webapps-deploy@v3
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        resource-group: ${{ env.AZURE_RESOURCE_GROUP }}
+        package: ${{ env.PROJECT_PATH }}/target/*.jar
+        startup-command: 'java -jar /home/site/wwwroot/app.jar'
+
+    - name: Logout do Azure
+      run: |
+        az logout
+
