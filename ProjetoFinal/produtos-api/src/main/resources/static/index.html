@@ -16,15 +16,19 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Logo_of_Deloitte.svg/960px-Logo_of_Deloitte.svg.png" alt="Deloitte" class="deloitte-logo me-2">
-                <i class="bi bi-box-seam me-2"></i>
-                Gerenciamento de Produtos
+                <img id="deloitte-logo"
+                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Logo_of_Deloitte.svg/960px-Logo_of_Deloitte.svg.png"
+                     alt="Deloitte" class="deloitte-logo">
+                <span class="brand-text">
+                    <i class="bi bi-box-seam me-2"></i>
+                    Gerenciamento de Produtos
+                </span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav ms-lg-4 align-items-lg-center">
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="mostrarFormulario()">
                             <i class="bi bi-plus-circle me-1"></i>Novo Produto
@@ -34,6 +38,12 @@
                         <a class="nav-link" href="#" onclick="carregarProdutos()">
                             <i class="bi bi-arrow-clockwise me-1"></i>Atualizar
                         </a>
+                    </li>
+                    <li class="nav-item">
+                        <button id="theme-toggle-btn" type="button" class="btn btn-outline-light btn-sm theme-toggle-btn ms-lg-3">
+                            <i class="bi bi-moon-stars me-1" id="theme-toggle-icon"></i>
+                            <span id="theme-toggle-text">Modo escuro</span>
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -45,25 +55,42 @@
         <!-- Alerta de Mensagens -->
         <div id="alert-container"></div>
 
-        <!-- Busca -->
-        <div class="card mb-4 search-card">
-            <div class="card-body">
-                <div class="row g-2 align-items-center">
-                    <div class="col-md-8">
-                        <div class="input-group">
-                            <span class="input-group-text">
-                                <i class="bi bi-search"></i>
-                            </span>
-                            <input type="text" class="form-control" id="busca-nome" placeholder="Pesquisar produto pelo nome...">
+        <!-- Busca + resumo -->
+        <div class="row g-3 mb-4 align-items-stretch">
+            <div class="col-lg-8">
+                <div class="card mb-0 search-card h-100">
+                    <div class="card-body">
+                        <div class="row g-2 align-items-center">
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-search"></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="busca-nome" placeholder="Pesquisar produto pelo nome...">
+                                </div>
+                            </div>
+                            <div class="col-md-4 d-flex gap-2 mt-2 mt-md-0">
+                                <button class="btn btn-primary w-100" type="button" onclick="buscarProdutosPorNome()">
+                                    Buscar
+                                </button>
+                                <button class="btn btn-secondary w-100" type="button" onclick="limparBusca()">
+                                    Limpar
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4 d-flex gap-2">
-                        <button class="btn btn-primary w-100" type="button" onclick="buscarProdutosPorNome()">
-                            Buscar
-                        </button>
-                        <button class="btn btn-secondary w-100" type="button" onclick="limparBusca()">
-                            Limpar
-                        </button>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card stats-card h-100 mb-0">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="text-uppercase small mb-1 stats-title">Total de itens cadastrados</h6>
+                            <div class="h3 mb-0" id="dashboard-total">0</div>
+                        </div>
+                        <div class="stats-icon">
+                            <i class="bi bi-boxes"></i>
+                        </div>
                     </div>
                 </div>
             </div>

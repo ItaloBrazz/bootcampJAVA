@@ -1,9 +1,13 @@
-const API_BASE_URL = 'https://bootcamp-produtos-italobraz-avguhkbtcebtceap.canadacentral-01.azurewebsites.net/produtos';
+// Quando o frontend está hospedado junto com o backend, usamos caminho relativo
+const API_BASE_URL = '/produtos';
+const LOGO_DARK = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Logo_of_Deloitte.svg/960px-Logo_of_Deloitte.svg.png';
+const LOGO_LIGHT = 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Logo_of_Deloitte.svg';
 
 let modoEdicao = false;
 let produtoEditando = null;
 
 document.addEventListener('DOMContentLoaded', function() {
+    inicializarTema();
     carregarProdutos();
     configurarFormulario();
     configurarBusca();
@@ -75,11 +79,16 @@ async function carregarLista(url) {
 
         produtos.sort((a, b) => (b.id || 0) - (a.id || 0));
 
+        const totalSpan = document.getElementById('total-produtos');
+        const dashboardTotal = document.getElementById('dashboard-total');
+
         if (produtos.length === 0) {
             emptyState.style.display = 'block';
-            document.getElementById('total-produtos').textContent = '0 produtos';
+            if (totalSpan) totalSpan.textContent = '0 produtos';
+            if (dashboardTotal) dashboardTotal.textContent = '0';
         } else {
-            document.getElementById('total-produtos').textContent = `${produtos.length} produto(s)`;
+            if (totalSpan) totalSpan.textContent = `${produtos.length} produto(s)`;
+            if (dashboardTotal) dashboardTotal.textContent = produtos.length.toString();
             produtos.forEach(produto => {
                 container.appendChild(criarCardProduto(produto));
             });
@@ -324,5 +333,46 @@ function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+}
+
+function inicializarTema() {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    const body = document.body;
+    const logo = document.getElementById('deloitte-logo');
+    const btn = document.getElementById('theme-toggle-btn');
+    const icon = document.getElementById('theme-toggle-icon');
+    const text = document.getElementById('theme-toggle-text');
+
+    function aplicarTema(theme) {
+        const isLight = theme === 'light';
+
+        body.classList.toggle('light-mode', isLight);
+
+        if (logo) {
+            logo.src = isLight ? LOGO_LIGHT : LOGO_DARK;
+        }
+
+        if (icon && text) {
+            if (isLight) {
+                icon.className = 'bi bi-sun me-1';
+                text.textContent = 'Modo claro';
+            } else {
+                icon.className = 'bi bi-moon-stars me-1';
+                text.textContent = 'Modo escuro';
+            }
+        }
+
+        localStorage.setItem('theme', theme);
+    }
+
+    aplicarTema(savedTheme);
+
+    if (btn) {
+        btn.addEventListener('click', () => {
+            const current = localStorage.getItem('theme') || 'dark';
+            const next = current === 'dark' ? 'light' : 'dark';
+            aplicarTema(next);
+        });
+    }
 }
 
